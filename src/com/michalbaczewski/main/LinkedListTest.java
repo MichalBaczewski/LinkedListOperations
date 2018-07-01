@@ -8,11 +8,16 @@ public class LinkedListTest {
         linkedList.add("Element2");
         linkedList.add("Element3");
         System.out.println("========Testuję get==========");
-        for (int index = 0; index < linkedList.getSize(); index++) {
-            System.out.println(linkedList.get(index));
-        }
+        printLinkedList(linkedList);
         System.out.println("======Testuję wstawianie pod indeks===");
         linkedList.add(1, "Element wstawiony");
+        printLinkedList(linkedList);
+        System.out.println("======Testuję usuwanie===");
+        linkedList.remove(2);
+        printLinkedList(linkedList);
+    }
+
+    private static void printLinkedList(LinkedList<String> linkedList) {
         for (int index = 0; index < linkedList.getSize(); index++) {
             System.out.println(linkedList.get(index));
         }

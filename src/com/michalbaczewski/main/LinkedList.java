@@ -19,8 +19,7 @@ public class LinkedList<T> {
     public void add(T element) {
         LinkedListElement<T> newElement = new LinkedListElement<>(element);
         if (isEmpty()) {
-            tail = newElement;
-            head = newElement;
+            tail = head = newElement;
         } else {
             tail.nextElement = newElement;
             tail.nextElement.prevElement = tail;
@@ -43,9 +42,25 @@ public class LinkedList<T> {
         }
     }
 
-//    public T remove(int index) {
-//
-//    }
+    public T remove(int index) {
+        LinkedListElement<T> elementToRemove = getElement(index);
+        if (size == 1) {
+            head = tail = null;
+        } else if (index < size) {
+            LinkedListElement<T> prevElement = elementToRemove.prevElement;
+            LinkedListElement<T> nextElement = elementToRemove.nextElement;
+            prevElement.nextElement = nextElement;
+            nextElement.prevElement = prevElement;
+        } else if (index == size - 1) {
+            tail = tail.prevElement;
+            tail.nextElement = null;
+        } else if (index == 0) {
+            head = head.nextElement;
+            head.prevElement = null;
+        }
+        size--;
+        return elementToRemove.value;
+    }
 
     private LinkedListElement<T> getElement(int index) {
         if (!isEmpty() && index < size) {
